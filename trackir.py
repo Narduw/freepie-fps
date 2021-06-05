@@ -5,7 +5,7 @@ def update():
     deltaYaw = filters.delta(yaw)
     deltaPitch = filters.delta(pitch)
 
-    if (enabled and (toggled or activated)):
+    if (scriptEnabled and (trackerToggled or trackerHold)):
         mouse.deltaX = deltaYaw*multiply
         mouse.deltaY = -deltaPitch*multiply
 
@@ -16,12 +16,12 @@ if starting:
     multiply = 40
     trackIR.update += update
 
-onOrOff = keyboard.getPressed(Key.Pause)
-toggle = keyboard.getPressed(Key.C)
-activated = keyboard.getKeyDown(Key.LeftAlt)
+toggleScript = keyboard.getPressed(Key.Pause)
+trackerToggle= keyboard.getPressed(Key.C)
+trackerHold = keyboard.getKeyDown(Key.LeftAlt)
 
-if toggle:
-    toggled = not toggled
-    
-if onOrOff:
-    enabled = not enabled
+if toggleScript:
+    scriptEnabled = not scriptEnabled
+
+if toggleTracker:
+    trackerToggled = not trackerToggled   
